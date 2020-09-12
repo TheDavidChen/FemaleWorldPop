@@ -134,7 +134,7 @@ $ ml gdal-3.0.1-gcc-7.3.1-uxpvawq proj-6.1.0-gcc-7.3.1-odxlwcd
 $ R  
 \> install.packages(“rgdal”)  
 
-**NOTE: **The ml gdal-3.0.1 part gets updated, so you need to check both the packages and update them. You can use `module spider` to look at all the modules and update it accordingly. For example, I used:
+**NOTE:** The ml gdal-3.0.1 part gets updated, so you need to check both the packages and update them. You can use `module spider` to look at all the modules and update it accordingly. For example, I used:
 
 ml gdal-3.0.4-gcc-7.3.1-ztomvd7 proj-6.2.0-gcc-7.3.1-3dqejei
 
