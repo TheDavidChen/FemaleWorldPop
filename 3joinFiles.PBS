@@ -1,0 +1,22 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=24:00:00
+#PBS -m abe
+#PBS -l mem=6gb
+#PBS -l pmem=6gb
+#PBS -j oe
+#PBS -A open
+
+
+echo " "
+echo " "
+echo "Job started on `hostname` at `date`"
+
+ml gcc/7.3.1
+ml r/3.4
+module use /gpfs/group/dml129/default/sw/modules
+
+cd $PBS_O_WORKDIR
+Rscript 3_joinFiles.R
+
+echo "Job Ended at `date`"
