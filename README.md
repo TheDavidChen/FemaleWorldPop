@@ -1,9 +1,9 @@
 
 # Female WorldPop Processing - Downloading by Age, Year, and Administrative Level
 
-The WorldPop provides [global mosaics of the world population broken down by age and sex at a ~1km resolution from 2000-2020](https://www.worldpop.org/geodata/listing?id=65). The code provided in this repo will allow the user to automatically download and then process all the data into a simple R dataframe that is easy to apply. 
+The WorldPop provides [global mosaics of the world population broken down by age and sex at a ~1km resolution from 2000-2020](https://www.worldpop.org/geodata/listing?id=65). The code provided in this repo will allow the user to automatically download and then process all the data into a simple `R` dataframe that is easy to apply. 
 
-The final output is an .RDS file containing the data year, the country name, administrative level name, and the sum of the female population living in that area. Users can specify the age range (e.g. 15-49) and the years desired. 
+The final output is an `.RDS` file containing the data year, the country name, administrative level name, and the sum of the female population living in that area. Users can specify the age range (e.g. 15-49) and the years desired. 
 
 Note: 4_ageAggregation.R aggregates the age brackets together with a tidyverse solution. Since it may not be compatible with the cluster, it is provided separately. 
 
@@ -26,7 +26,7 @@ The code is designed to be run on the [Penn State ACI-b cluster](https://www.icd
 
 **Note:** If this is your first time running the `raster` package on the cluster, please refer to the "Getting Raster Working" section first. 
 
-1. Download the three R files and corresponding PBS files.    
+1. Download the three `R` files and corresponding PBS files.    
 2. Use WinSCP or another SCP Client (e.g. Cyberduck for Mac, FileZilla for all OS) to move the files into a new scratch folder on the ACI-b.  
 3. Edit line 21 of 2_SSA_district_processing.PBS to match the version current available on the cluster.  
 
@@ -39,9 +39,9 @@ The code is designed to be run on the [Penn State ACI-b cluster](https://www.icd
 
 ## Files
 
-There are 3 `R` files and 3 corresponding `PBS` files. The first R file downloads the data, the second extracts the data, and then the third aggregates and outputs the results. 
+There are 3 `R` files and 3 corresponding `PBS` files. The first `R` file downloads the data, the second extracts the data, and then the third aggregates and outputs the results. 
 
-A fourth `R` file (4_ageAggregation.R) is provided as a tidyverse solution to joining all the age brackets together. No corresponding .PBS file is provided due to the amount of dependencies required. 
+A fourth `R` file (4_ageAggregation.R) is provided as a tidyverse solution to joining all the age brackets together. No corresponding `.PBS` file is provided due to the amount of dependencies required. 
 
 A sample output (2000-2020 female 15-49 population sizes in sub-Saharan Africa at the administrative level one unit) is provided in the Sample_Output folder. 
 
@@ -142,4 +142,4 @@ When I installed packages, I stored them all temporarily here:
 The downloaded source packages are in
         ‘/tmp/RtmpBMKWUB/downloaded_packages’
 
-Now, every time you want to use the raster package, you will still need to call the gdal part of the code. This is done for you in the PBS file. 
+Now, every time you want to use the raster package, you will still need to call the gdal part of the code. This is done for you in the `PBS` file. 
