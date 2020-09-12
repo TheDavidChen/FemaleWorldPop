@@ -9,7 +9,11 @@
 #   We then use raster::extract() to get the pop. sum at the admin level 1.
 #   This output is then returned. 
 
-# Input: N/A, just have the .tif files all stored in a folder
+# Input: 
+#   ISO3 codes for all the desired countries, 
+#   the path to the folder where all the .tif files are located, 
+#   name the desired output folder, 
+#   andd the desired administrative level (defaults to 1).
 
 # Output: 
 #   .RDS file containing the country name, admin level name, and sum of the 
