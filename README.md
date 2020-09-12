@@ -5,7 +5,7 @@ The WorldPop provides [global mosaics of the world population broken down by age
 
 The final output is an .RDS file containing the data year, the country name, administrative level name, and the sum of the female population living in that area. Users can specify the age range (e.g. 15-49) and the years desired. 
 
-Note: Currently updating the code to aggregate the age ranges together. Currently the code splits each age bracket (e.g. 15-19, 20-24) into a separate row. 
+Note: 4_ageAggregation.R aggregates the age brackets together with a tidyverse solution. Since it may not be compatible with the cluster, it is provided separately. 
 
 ## Technologies
 
@@ -15,6 +15,10 @@ This makes use of `R` v3.5.2 and the following packages:
 + `raster` v3.0.12.    
 
 The code is designed to be run on the [Penn State ACI-b cluster](https://www.icds.psu.edu/computing-services/icds-aci-user-guide/), although it can be run on any local computer. 
+
+4_ageAggregation makes use of the following:
+
++ `tidyverse` v1.3.0
 
 ## How to Run
 
@@ -29,12 +33,17 @@ The code is designed to be run on the [Penn State ACI-b cluster](https://www.icd
     + This can be checked by using PuTTY and running: "module spider" and locating the line similar to "ml gdal-3.0.4-gcc-7.3.1-ztomvd7 proj-6.2.0-gcc-7.3.1-3dqejei".   
     
 4. Enter PuTTY (Terminal for Mac), and use `cd` to get to the location of the transferred R files.  
-5. Run the PBS files through the `qsub` command in numerical order (e.g. `qsub 1SSA_download.PBS` in PuTTY to commence processing. 
+5. Run the 3 PBS files through the `qsub` command in numerical order (e.g. `qsub 1SSA_download.PBS` in PuTTY to commence processing. 
 6. Transfer the .RDS output out of the cluster through your SCP client if desired. 
+7. Run 4_ageAggregation.R to aggregate the age brackets together.
 
 ## Files
 
 There are 3 `R` files and 3 corresponding `PBS` files. The first R file downloads the data, the second extracts the data, and then the third aggregates and outputs the results. 
+
+A fourth `R` file (4_ageAggregation.R) is provided as a tidyverse solution to joining all the age brackets together. No corresponding .PBS file is provided due to the amount of dependencies required. 
+
+A sample output (2000-2020 female 15-49 population sizes in sub-Saharan Africa at the administrative level one unit) is provided in the Sample_Output folder. 
 
 ### 1_SSA_download.R
 
@@ -69,7 +78,28 @@ There are 3 `R` files and 3 corresponding `PBS` files. The first R file download
 
 ### 3_joinFiles.R
 
-This file is currently being updated. 
+**Purpose:** Combine all the previously downloaded population data into one dataframe. 
+
+**Input:** Specify the folder with the previous output and label the output name.
+
+**Output:** All the individual years combined into one dataframe, a .RDS file.
+
+**Notes:** 
+
++ The user should specify the output name to ensure it is an accurate description.
+
+### 4_ageAggregation.R
+
+**Purpose:** Combine all the age brackets into one value for each country/year/region combination.
+
+**Input:** The .RDS dataframe created from 3_joinFiles.R
+
+**Output:** An .RDS dataframe containing the aggregated female population data.
+
+**Notes:** 
+
++ A sample is provided in the Sample_Output folder.
++ Users should ensure that the file names match the previously created files. 
 
 ### PBS Files
 
